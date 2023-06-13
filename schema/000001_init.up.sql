@@ -9,10 +9,10 @@ CREATE TABLE users
 CREATE TABLE tasks
 (
     id serial not null unique,
-    tag varchar(255) not null,
+    tag varchar(255),
     title varchar(255) not null,
     description varchar(255),
-    deadline date not null,
+    deadline date,
     done boolean not null default false
 );
 

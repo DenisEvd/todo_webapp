@@ -12,6 +12,7 @@ type Authorization interface {
 }
 
 type Task interface {
+	Create(userId int, task todo_webapp.Task) (int, error)
 }
 
 type Service struct {
@@ -22,5 +23,6 @@ type Service struct {
 func NewService(rep *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(rep),
+		Task:          NewTaskService(rep),
 	}
 }

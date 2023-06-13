@@ -11,6 +11,7 @@ type Authorization interface {
 }
 
 type Task interface {
+	Create(userId int, task todo_webapp.Task) (int, error)
 }
 
 type Repository struct {
@@ -21,5 +22,6 @@ type Repository struct {
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthRepository(db),
+		Task:          NewTaskPostgres(db),
 	}
 }
