@@ -12,7 +12,6 @@ func (h *Handler) signIn(c *gin.Context) {
 
 func (h *Handler) signUp(c *gin.Context) {
 	var input todo_webapp.User
-
 	if err := c.BindJSON(&input); err != nil {
 		NewErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
@@ -23,7 +22,6 @@ func (h *Handler) signUp(c *gin.Context) {
 		NewErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": id,
 	})
