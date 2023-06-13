@@ -22,15 +22,16 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-up", h.signUp)
 	}
 
-	tasks := router.Group("/task")
+	tasks := router.Group("/task", h.userIdentity)
 	{
 		tasks.GET("/", h.getAllTasks)
 		tasks.POST("/", h.createTask)
 		tasks.DELETE("/", h.deleteTask)
 		tasks.GET("/:task_id", h.getTaskById)
+
+		tasks.GET("/due/:yy/:mm/:dd", h.getTasksByDate)
+		tasks.GET("/tag/:tag_name", h.getTasksByTag)
 	}
-	router.GET("/due/:yy/:mm/:dd", h.getTasksByDate)
-	router.GET("/tag/:tag_name", h.getTasksByTag)
 
 	return router
 }
