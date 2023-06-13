@@ -7,6 +7,7 @@ import (
 
 type Authorization interface {
 	CreateUser(user todo_webapp.User) (int, error)
+	GenerateToken(username, password string) (string, error)
 }
 
 type Task interface {
